@@ -1,0 +1,39 @@
+{
+  "name": "whims-music-api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docker-db": "docker-compose up -d --build",
+    "seed": "npx sequelize db:seed:all --config=environments/sequelize.js",
+    "migrate": "npx sequelize db:migrate --config=environments/sequelize.js",
+    "create-server": "npm run docker-db && npm run migrate && npm run seed",
+    "serve-dev": "npm run docker-db; DEBUG=WhimsMusic-API:* nodemon ./bin/www",
+    "serve-prod": "DEBUG=WhimsMusic-API:* NODE_ENV=PROD node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LvFarias/whims-music-api.git"
+  },
+  "author": "Whims Inc.",
+  "contributors": [
+    "Luan Vasco de Farias <luan.vfarias@gmail.com> (https://github.com/LvFarias/)"
+  ],
+  "bugs": {
+    "url": "https://github.com/LvFarias/whims-music-api/issues"
+  },
+  "homepage": "https://github.com/LvFarias/whims-music-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.2.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.4",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}

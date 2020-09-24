@@ -1,0 +1,14 @@
+version: "2"
+services:
+  mysql:
+    container_name: whims_music_db
+    image: mysql:5.7
+    volumes:
+      - ./database/whims_music_db:/var/lib/mysql
+    environment:
+      - MYSQL_USER=whims
+      - MYSQL_DATABASE=whims_music
+      - MYSQL_PASSWORD=94467068742
+      - MYSQL_ROOT_PASSWORD=94467068742
+    ports:
+      - "9632:3306"
