@@ -79,7 +79,7 @@ router.post('/login', async (req, res, next) => {
   const user = await models.users.findOne({ where: { email: req.body.email } }).catch(logger.error);
   
   if (user) {
-    const passwordMath = await jwt.comparePassword(user.password, req.body.password).catch(logger.error);
+    const passwordMath = await jwt.comparePassword(user.password, req.body.password).catch((e) => { logger.error('error2', e)});
     
     if (passwordMath) {
       user.dataValues.token = jwt.createUserToken(user.id);

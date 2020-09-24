@@ -32,7 +32,7 @@ function endEndPoint(req, res, next) {
     if (!req.return.message) delete req.return.message;
     if (!Object.keys(req.return.data).length) delete req.return.data;
     res.status(status).json(req.return);
-    log.server(`END --> ${req.method}: ${req.url} - STATUS: ${res.statusCode} - ORIGIN: ${res.req.headers.origin}`);
+    logger.server(`END --> ${req.method}: ${req.url} - STATUS: ${res.statusCode} - ORIGIN: ${res.req.headers.origin}`);
 }
 
 module.exports = app;

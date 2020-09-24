@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker-db": "docker-compose up -d --build",
     "seed": "npx sequelize db:seed:all --config=environments/sequelize.js",
     "migrate": "npx sequelize db:migrate --config=environments/sequelize.js",
-    "create-server": "npm run docker-db && npm run migrate && npm run seed",
-    "serve-dev": "npm run docker-db; DEBUG=WhimsMusic-API:* nodemon ./bin/www",
-    "start": "DEBUG=WhimsMusic-API:* node ./bin/www"
+    "create-db": "npm run migrate && npm run seed",
+    "dev": "npm run create-db; DEBUG=WhimsMusic-API:* nodemon ./bin/www",
+    "start": "npm run create-db; DEBUG=WhimsMusic-API:* node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -29,11 +28,10 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.2.5",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.0"
   }
 }

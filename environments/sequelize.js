@@ -2,12 +2,11 @@ const env = require('./environment');
 
 module.exports = () => {
     return {
-        username: env.mysqlUser,
-        password: env.mysqlPassword,
-        database: env.mysqlDatabase,
-        host: env.mysqlHost,
-        port: env.mysqlPort,
-        dialect: 'mysql',
-        logging: true
+        dialect: 'sqlite',
+        url: 'sqlite::memory:',
+        storage: 'database/whims_music.sqlite',
+        username: env.sqliteUser,
+        password: env.sqlitePassword,
+        database: env.sqliteDatabase,
     };
 };
