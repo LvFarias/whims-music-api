@@ -9,7 +9,7 @@
     "migrate": "npx sequelize db:migrate --config=environments/sequelize.js",
     "create-server": "npm run docker-db && npm run migrate && npm run seed",
     "serve-dev": "npm run docker-db; DEBUG=WhimsMusic-API:* nodemon ./bin/www",
-    "serve-prod": "DEBUG=WhimsMusic-API:* NODE_ENV=PROD node ./bin/www"
+    "start": "DEBUG=WhimsMusic-API:* node ./bin/www"
   },
   "repository": {
     "type": "git",
