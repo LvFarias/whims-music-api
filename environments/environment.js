@@ -10,5 +10,8 @@ const environment = {
     appURL: process.env.APP_URL || 'http://localhost:9277',
     siteURL: process.env.SITE_URL || 'http://localhost:9936',
     contactEmail: process.env.CONTACT_EMAIL || 'luan.vfarias@gmail.com',
+    teamName: process.env.TEAM_NAME || 'Equipe Whims',
+    copyright: process.env.COPYRIGHT || '© 2019 Whims Inc. | São Paulo - BR',
+    socialText: process.env.SOCIAL_TEXT || 'Acompanhe-nos nas redes sociais!',
 };
 module.exports = environment;

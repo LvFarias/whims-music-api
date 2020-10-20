@@ -2,33 +2,61 @@ const nodeMailer = require('nodemailer');
 
 const logger = require('./logger');
 
-const transporter = nodeMailer.createTransport({
-    port: 465,
-    secure: true,
-    host: 'mail.ifnito.com',
-    auth: {
-        user: 'contato@ifnito.com',
-        pass: '2668286@ifnito'
-    }
-});
+function createEmailTest() {
+    return new Promise((res, rej) => {
+        nodeMailer.createTestAccount((err, account) => {
+            if (err) return rej(err);
+            res(account);
+        });
+    });
+}
+
+function createTransport() {
+    return new Promise(async (res, rej) => {
+        const account = await createEmailTest().catch(rej);
+        if (account) {
+            // const transporter = nodeMailer.createTransport({
+            //     host: 'smtp.ethereal.email',
+            //     port: 587,
+            //     secure: false,
+            //     auth: {
+            //         user: account.user,
+            //         pass: account.pass,
+            //     }
+            // });
+            const transporter = nodeMailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'whims.music.contato@gmail.com',
+                    pass: 'Google0.o',
+                }
+            });
+            res(transporter);
+        }
+    });   
+}
 
 function getTemplateOptions(templateName, emailTo, values) {
     const templateConfig = require(`../../mails/${templateName}.js`);
-    log.debug(`get template config for: ${templateName}`);
+    logger.debug(`get template config for: ${templateName}`);
     templateConfig.setValues(values);
     const options = templateConfig.getOptions(emailTo);
-    log.debug(`get option for: ${templateName}`);
-
+    logger.debug(`get option for: ${templateName}`);
+    
     return options;
 }
 function sendEmail(options) {
-    return new Promise((res, rej) => {
-        log.debug('send email');
-        transporter.sendMail(options, (error, info) => {
-            if (error) rej(error);
-            log.debug(info);
-            res(info);
-        });
+    return new Promise(async (res, rej) => {
+        const transporter = await createTransport().catch(rej);
+        
+        if (transporter) {
+            logger.debug('send email');
+            transporter.sendMail(options, (error, info) => {
+                if (error) rej(error);
+                logger.debug(info);
+                res(info);
+            });
+        }
     });
 }
 

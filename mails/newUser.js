@@ -5,15 +5,20 @@ const html = require('./templates/newUser');
 const env = require('../environments/environment');
 
 const keyValues = {
-	email: '',
-	userName: '',
-	password: '',
 	appURL: env.appURL,
-	siteURL: env.siteURL,
-	facebookURL: env.facebookURL,
-	instagramURL: env.instagramURL,
-	contactEmail: env.contactEmail,
-	buttonURL: `${env.appURL}/login`,
+		siteURL: env.siteURL,
+		teamName: env.teamName,
+		copyright: env.copyright,
+		socialText: env.socialText,
+		facebookURL: env.facebookURL,
+		instagramURL: env.instagramURL,
+		contactEmail: env.contactEmail,
+		userName: '',
+		buttonURL: `${env.appURL}/login`,
+		buttonText: 'ACESSAR O APP',
+		titleText: 'Bem vindo, ',
+		bodyText: 'Agora você faz parte da comunidade do Whims Music.<br>E pode ter acesso à 2 músicas por tempo limitado*.',
+		obsText: 'Você recebeu esta mensagem porque foi adicionado à um projeto na plataforma Whims Music. Entre em contato conosco se tiver alguma dúvida. Cancele a inscrição a qualquer momento.',
 };
 
 function getOptions(email) {
@@ -27,9 +32,7 @@ function getOptions(email) {
 }
 
 function setValues(values) {
-	keyValues.email = values.email;
 	keyValues.userName = values.userName;
-	keyValues.password = values.password;
 }
 
 module.exports = { setValues, getOptions };

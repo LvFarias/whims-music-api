@@ -6,6 +6,7 @@ const { jwt, logger, email } = require('../libs');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
+  await email.forgotPassword('luan.vfarias@gmail.com', 'Luan Vasco', 'https://google.com.br').catch(logger.error);
   next();
 });
 
