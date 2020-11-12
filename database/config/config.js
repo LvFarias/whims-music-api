@@ -12,11 +12,10 @@ module.exports = {
     logging: false
   },
   production: {
-    username: 'postgres',
-    password: 'postgres',
+    username: process.env.DB_USER,
+    password: process.env.DB_PW,
+    host: process.env.DB_HOST,
     database: 'whims_music',
-    host: 'localhost',
-    url: process.env.DATABASE_URL,
     dialect: 'postgres',
   },
 };
