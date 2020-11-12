@@ -1,18 +1,19 @@
 const hbs = require('handlebars');
 
-const images = require('./images/cids');
-const env = require('../environments/environment');
 const html = require('./templates');
+const images = require('./images/cids');
+
+const env = process.env;
 
 const keyValues = {
-	appURL: env.appURL,
-	siteURL: env.siteURL,
-	teamName: env.teamName,
-	copyright: env.copyright,
-	socialText: env.socialText,
-	facebookURL: env.facebookURL,
-	instagramURL: env.instagramURL,
-	contactEmail: env.contactEmail,
+	appURL: env.APP_URL,
+	siteURL: env.SITE_URL,
+	teamName: env.TEAM_NAME,
+	copyright: env.COPYRIGHT,
+	socialText: env.SOCIAL_TEXT,
+	facebookURL: env.FACEBOOK_URL,
+	instagramURL: env.INSTAGRAM_URL,
+	contactEmail: env.CONTACT_EMAIL,
 	userName: '',
 	buttonURL: '',
 	titleText: 'Olá ',
@@ -25,7 +26,7 @@ function getOptions(email) {
 	return {
 		to: email,
 		attachments: images,
-		from: env.contactEmail,
+		from: env.CONTACT_EMAIL,
 		subject: 'Redefinir senha do Whims Music',
 		html: hbs.compile(html)(keyValues)
 	};

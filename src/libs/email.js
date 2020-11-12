@@ -2,6 +2,8 @@ const nodeMailer = require('nodemailer');
 
 const logger = require('./logger');
 
+const env = process.env;
+
 function createEmailTest() {
     return new Promise((res, rej) => {
         nodeMailer.createTestAccount((err, account) => {
@@ -27,8 +29,8 @@ function createTransport() {
             const transporter = nodeMailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'whims.music.contato@gmail.com',
-                    pass: 'Google0.o',
+                    user: env.SEND_EMAIL,
+                    pass: env.SEND_EMAIL_PW,
                 }
             });
             res(transporter);

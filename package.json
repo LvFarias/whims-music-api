@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed": "npx sequelize db:seed:all --config=environments/sequelize.js",
-    "migrate": "npx sequelize db:migrate --config=environments/sequelize.js",
-    "create-db": "npm run migrate && npm run seed",
-    "dev": "npm run create-db; DEBUG=WhimsMusic-API:* nodemon ./bin/www",
-    "start": "npm run create-db; DEBUG=WhimsMusic-API:* node ./bin/www"
+    "seed": "npx sequelize db:seed:all",
+    "seed:undo": "npx sequelize db:seed:undo:all",
+    "migrate": "npx sequelize db:migrate",
+    "migrate:undo": "npx sequelize db:migrate:undo:all",
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,15 @@
   "dependencies": {
     "cors": "^2.8.5",
     "debug": "^4.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
+    "pg": "^8.5.0",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.0"
+    "sequelize-cli": "^6.2.0"
   }
 }

@@ -1,7 +1,8 @@
-let jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-let logger = require('./logger');
-let env = require('../../environments/environment');
+const logger = require('./logger');
+
+const env = process.env;
 
 function isAuthorized(req, res, next) {
     let token = req.headers['authorization'];
@@ -11,7 +12,7 @@ function isAuthorized(req, res, next) {
         return res.status(401).send({ message: 'Failed to authenticate.' });
     }
     token = token.replace('Bearer ', '');
-    jwt.verify(token, env.token_secret, function (err, decoded) {
+    jwt.verify(token, env.TOKEN_SECRET, function (err, decoded) {
         if (err) {
             logger.debug('token não bateu');
             logger.server(`END --> ${req.method}: ${req.originalUrl} - STATUS: 401 - ORIGIN: ${res.req.headers.origin}`);
@@ -23,16 +24,16 @@ function isAuthorized(req, res, next) {
 }
 
 function createUserToken(id) {
-    return jwt.sign(id, env.token_secret);
+    return jwt.sign(id, env.TOKEN_SECRET);
 }
 
 function bashPassword(password) {
-    return jwt.sign(password, env.password_secret);
+    return jwt.sign(password, env.PASSWORD_SECRET);
 }
 
 function comparePassword(hash, password) {
     return new Promise((res, rej) => {
-        jwt.verify(hash, env.password_secret, function (err, decoded) {
+        jwt.verify(hash, env.PASSWORD_SECRET, function (err, decoded) {
             if (decoded == password) res(true);
             rej('password_not_math');
         });

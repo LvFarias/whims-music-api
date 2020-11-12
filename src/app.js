@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+
 const logger = require('./libs/logger');
 const indexRoute = require('./routes');
 const userRoutes = require('./routes/user');
