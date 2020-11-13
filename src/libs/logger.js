@@ -1,6 +1,9 @@
 const debugLib = require('debug');
 
-const db = debugLib('WhimsMusic-API:db');
+const dbLog = debugLib('WhimsMusic-API:db');
+const db = (query, ...args) => {
+    dbLog(query);
+};
 const info = debugLib('WhimsMusic-API:info');
 const debug = debugLib('WhimsMusic-API:debug');
 const error = debugLib('WhimsMusic-API:error');

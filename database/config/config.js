@@ -9,7 +9,7 @@ module.exports = {
     database: 'whims_music',
     host: 'localhost',
     dialect: 'postgres',
-    logging: false
+    logging: db
   },
   production: {
     username: process.env.DB_USER,
@@ -17,5 +17,6 @@ module.exports = {
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     dialect: 'postgres',
+    logging: false
   },
 };
